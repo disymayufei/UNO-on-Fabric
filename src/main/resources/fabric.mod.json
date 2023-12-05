@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "uno",
+  "id": "sls_uno",
   "version": "${version}",
   "name": "UNO",
   "description": "",
@@ -9,11 +9,14 @@
     "repo": "https://github.com/Disy/UNO"
   },
   "license": "AGPL-3.0",
-  "icon": "assets/uno/icon.png",
-  "environment": "server",
+  "icon": "assets/sls_uno/icon.png",
+  "environment": "*",
   "entrypoints": {
+    "client": [
+      "cn.disy920.sls_uno.client.ClientMain"
+    ],
     "main": [
-      "cn.disy920.uno.Main"
+      "cn.disy920.sls_uno.Main"
     ]
   },
   "mixins": [

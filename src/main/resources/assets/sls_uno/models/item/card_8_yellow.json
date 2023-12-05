@@ -1,0 +1,6 @@
+{
+  "parent": "sls_uno:item/card_base",
+  "textures": {
+    "0": "sls_uno:item/card_8_yellow"
+  }
+}
