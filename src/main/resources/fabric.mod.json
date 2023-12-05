@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "uno",
+  "version": "${version}",
+  "name": "UNO",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/Disy/UNO"
+  },
+  "license": "AGPL-3.0",
+  "icon": "assets/uno/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "cn.disy920.uno.Main"
+    ]
+  },
+  "mixins": [
+    "uno.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
