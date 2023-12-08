@@ -46,9 +46,9 @@ public class Card {
         RED_7(Color.RED, 7, Items.CARD_7_RED.getItem()),
         RED_8(Color.RED, 8, Items.CARD_8_RED.getItem()),
         RED_9(Color.RED, 9, Items.CARD_9_RED.getItem()),
-        RED_skip(Color.RED, 10, Items.CARD_SKIP_RED.getItem()),
-        RED_reverse(Color.RED, 11, Items.CARD_REVERSE_RED.getItem()),
-        RED_draw_2(Color.RED, 12, Items.CARD_DRAW_2_RED.getItem()),
+        RED_SKIP(Color.RED, 10, Items.CARD_SKIP_RED.getItem()),
+        RED_REVERSE(Color.RED, 11, Items.CARD_REVERSE_RED.getItem()),
+        RED_DRAW_2(Color.RED, 12, Items.CARD_DRAW_2_RED.getItem()),
         //YELLOW
         YELLOW_0(Color.YELLOW, 0, Items.CARD_0_YELLOW.getItem()),
         YELLOW_1(Color.YELLOW, 1, Items.CARD_1_YELLOW.getItem()),
@@ -60,9 +60,9 @@ public class Card {
         YELLOW_7(Color.YELLOW, 7, Items.CARD_7_YELLOW.getItem()),
         YELLOW_8(Color.YELLOW, 8, Items.CARD_8_YELLOW.getItem()),
         YELLOW_9(Color.YELLOW, 9, Items.CARD_9_YELLOW.getItem()),
-        YELLOW_skip(Color.YELLOW, 10, Items.CARD_SKIP_YELLOW.getItem()),
-        YELLOW_reverse(Color.YELLOW, 11, Items.CARD_REVERSE_YELLOW.getItem()),
-        YELLOW_draw_2(Color.YELLOW, 12, Items.CARD_DRAW_2_YELLOW.getItem()),
+        YELLOW_SKIP(Color.YELLOW, 10, Items.CARD_SKIP_YELLOW.getItem()),
+        YELLOW_REVERSE(Color.YELLOW, 11, Items.CARD_REVERSE_YELLOW.getItem()),
+        YELLOW_DRAW_2(Color.YELLOW, 12, Items.CARD_DRAW_2_YELLOW.getItem()),
         //BLUE
         BLUE_0(Color.BLUE, 0, Items.CARD_0_BLUE.getItem()),
         BLUE_1(Color.BLUE, 1, Items.CARD_1_BLUE.getItem()),
@@ -74,9 +74,9 @@ public class Card {
         BLUE_7(Color.BLUE, 7, Items.CARD_7_BLUE.getItem()),
         BLUE_8(Color.BLUE, 8, Items.CARD_8_BLUE.getItem()),
         BLUE_9(Color.BLUE, 9, Items.CARD_9_BLUE.getItem()),
-        BLUE_skip(Color.BLUE, 10, Items.CARD_SKIP_BLUE.getItem()),
-        BLUE_reverse(Color.BLUE, 11, Items.CARD_REVERSE_BLUE.getItem()),
-        BLUE_draw_2(Color.BLUE, 12, Items.CARD_DRAW_2_BLUE.getItem()),
+        BLUE_SKIP(Color.BLUE, 10, Items.CARD_SKIP_BLUE.getItem()),
+        BLUE_REVERSE(Color.BLUE, 11, Items.CARD_REVERSE_BLUE.getItem()),
+        BLUE_DRAW_2(Color.BLUE, 12, Items.CARD_DRAW_2_BLUE.getItem()),
         //GREEN
         GREEN_0(Color.GREEN, 0, Items.CARD_0_GREEN.getItem()),
         GREEN_1(Color.GREEN, 1, Items.CARD_1_GREEN.getItem()),
@@ -85,15 +85,15 @@ public class Card {
         GREEN_4(Color.GREEN, 4, Items.CARD_4_GREEN.getItem()),
         GREEN_5(Color.GREEN, 5, Items.CARD_5_GREEN.getItem()),
         GREEN_6(Color.GREEN, 6, Items.CARD_6_GREEN.getItem()),
-        GREENE_7(Color.GREEN, 7, Items.CARD_7_GREEN.getItem()),
+        GREEN_7(Color.GREEN, 7, Items.CARD_7_GREEN.getItem()),
         GREEN_8(Color.GREEN, 8, Items.CARD_8_GREEN.getItem()),
         GREEN_9(Color.GREEN, 9, Items.CARD_9_GREEN.getItem()),
-        GREEN_skip(Color.GREEN, 10, Items.CARD_SKIP_GREEN.getItem()),
-        GREEN_reverse(Color.GREEN, 11, Items.CARD_REVERSE_GREEN.getItem()),
-        GREEN_draw_2(Color.GREEN, 12, Items.CARD_DRAW_2_GREEN.getItem()),
+        GREEN_SKIP(Color.GREEN, 10, Items.CARD_SKIP_GREEN.getItem()),
+        GREEN_REVERSE(Color.GREEN, 11, Items.CARD_REVERSE_GREEN.getItem()),
+        GREEN_DRAW_2(Color.GREEN, 12, Items.CARD_DRAW_2_GREEN.getItem()),
         //WILD
-        WILD(Color.BLACK,1,Items.CARD_WILD.getItem()),
-        WILD_draw_4(Color.BLACK,2,Items.CARD_WILD_DRAW_4.getItem());
+        WILD(Color.BLACK,-1,Items.CARD_WILD.getItem()),
+        WILD_DRAW_4(Color.BLACK,-1,Items.CARD_WILD_DRAW_4.getItem());
 
         final int num;
         final Color color;
