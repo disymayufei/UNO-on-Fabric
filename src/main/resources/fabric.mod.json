@@ -20,7 +20,8 @@
     ]
   },
   "mixins": [
-    "uno.mixins.json"
+    "uno.mixins.json",
+    "uno.stdlib.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.0",
