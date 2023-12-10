@@ -26,9 +26,6 @@ public abstract class ScreenHandlerMixin {
                                   ClickType clickType, Slot slot, ItemStack stack, ItemStack cursorStack) {
         if (((Object) this) instanceof GenericContainerScreenHandler generic) {
             if (generic.getInventory() instanceof CustomInventory cinv && slot.inventory == cinv) { // yes our time!
-                if (Items.AIR.equals(stack.getItem())) {
-                    return true; // nop on air items
-                }
                 // we're sure the player is server-sided
                 // because this mixin only available in SERVER environment
                 boolean noCancel = CustomInventoryEvents.CLICK.invoker()
