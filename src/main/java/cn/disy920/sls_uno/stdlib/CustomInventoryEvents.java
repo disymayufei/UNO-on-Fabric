@@ -39,7 +39,7 @@ public class CustomInventoryEvents {
 
         /**
          * Override this and return false if you want to hook into clicks on AIR items!
-         * @return True if we should be called when player clicking on AIR items
+         * @return True if we should NOT be called when player clicking on AIR items
          */
         default boolean rejectAirClicks() {
             return true;
