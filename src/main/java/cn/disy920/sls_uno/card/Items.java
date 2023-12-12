@@ -7,13 +7,13 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public enum Items {
-    // 用于物品组图标的物品
+    // for item group icon
     ICON_ITEM(
             new Item(new FabricItemSettings()),
             Type.ICON
     ),
 
-    // UNO卡片
+    // UNO cards
     CARD_0_RED(
             Registry.register(
                     Registries.ITEM,

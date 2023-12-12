@@ -1,10 +1,9 @@
-package cn.disy920.sls_uno.stdlib.mixin;
+package cn.disy920.sls_uno.inventory.mixin;
 
-import cn.disy920.sls_uno.stdlib.CustomInventory;
-import cn.disy920.sls_uno.stdlib.CustomInventoryEvents;
+import cn.disy920.sls_uno.inventory.CustomInventory;
+import cn.disy920.sls_uno.inventory.CustomInventoryEvents;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;

@@ -1,4 +1,4 @@
-package cn.disy920.sls_uno.stdlib;
+package cn.disy920.sls_uno.inventory;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
