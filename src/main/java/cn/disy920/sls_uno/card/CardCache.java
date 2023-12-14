@@ -17,7 +17,7 @@ public final class CardCache {
 
     private static WildCard[] basicWildCard;
 
-    static {
+    public static void init() {
         initNumberCard();
         initBasicFunctionalCard();
         initBasicWildCard();
@@ -31,7 +31,7 @@ public final class CardCache {
             for (int j = 0; j < 10; j++) {
                 Item cardItem = Registry.register(
                         Registries.ITEM,
-                        new Identifier("sls_uno", "card_" + j + "_" + colors[i].name().toLowerCase()),
+                        new Identifier("sls_uno", ("card_" + j + "_" + colors[i].name()).toLowerCase()),
                         new Item(new FabricItemSettings())
                 );
 
@@ -49,7 +49,7 @@ public final class CardCache {
             for (int j = 0; j < 3; j++) {
                 Item cardItem = Registry.register(
                         Registries.ITEM,
-                        new Identifier("sls_uno", "card_" + cardTypes[j] + "_" + colors[i].name().toLowerCase()),
+                        new Identifier("sls_uno", ("card_" + cardTypes[j] + "_" + colors[i].name()).toLowerCase()),
                         new Item(new FabricItemSettings())
                 );
 

@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0218a6e0-7985-461d-8c8b-572bd1a11ecc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardItemGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/ColorfulCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/FunctionalCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/NumberCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/UNOCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/WildCard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/enums/CardType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/exception/ColorHasSetException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Card.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/enums/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Items.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Type.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/client/ClientMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardItemGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardItemGroup.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +161,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701704151172</updated>
       <workItem from="1701704152219" duration="32173000" />
-      <workItem from="1702523495714" duration="9213000" />
+      <workItem from="1702523495714" duration="9514000" />
     </task>
     <servers />
   </component>
