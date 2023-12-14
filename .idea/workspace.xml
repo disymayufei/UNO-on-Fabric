@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0218a6e0-7985-461d-8c8b-572bd1a11ecc" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/CardItemGroup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/ColorfulCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/FunctionalCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/NumberCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/UNOCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/WildCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/enums/CardType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/exception/ColorHasSetException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Items.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/stdlib/CustomInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/inventory/CustomInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/stdlib/CustomInventoryEvents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/inventory/CustomInventoryEvents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/stdlib/mixin/ScreenHandlerMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/inventory/mixin/ScreenHandlerMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/uno.stdlib.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uno.stdlib.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Card.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/enums/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Items.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/card/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/disy920/sls_uno/client/ClientMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +35,9 @@
     <system id="GRADLE">
       <state>
         <task path="C:\Users\disym\IdeaProjects\UNO">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$">
           <activation />
         </task>
         <projects_view>
@@ -53,6 +63,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -63,6 +74,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
   <component name="ProjectId" id="2Z5FhD6so2vephRK8SzGl7PknAe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -71,15 +85,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.构建 UNO.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Minecraft Client.executor": "Run"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -110,7 +127,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="uno build" type="GradleRunConfiguration" factoryName="Gradle">
@@ -132,7 +149,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
+      <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -140,6 +157,13 @@
         <item itemvalue="Gradle.UNO [runClient]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -149,7 +173,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701704151172</updated>
-      <workItem from="1701704152219" duration="28626000" />
+      <workItem from="1701704152219" duration="32173000" />
+      <workItem from="1702523495714" duration="9213000" />
     </task>
     <servers />
   </component>
