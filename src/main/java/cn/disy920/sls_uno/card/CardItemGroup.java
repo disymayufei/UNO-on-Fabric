@@ -28,17 +28,17 @@ public final class CardItemGroup {
                 .entries(
                         (displayContext, entries) -> {
                             // add all number card
-                            for (NumberCard numberCard : CardCache.getAllNumberCard()) {
+                            for (NumberCard numberCard : CardCache.numberCard) {
                                 entries.add(numberCard.getItem());
                             }
 
                             // add all basic functional card
-                            for (FunctionalCard functionalCard : CardCache.getAllBasicFunctionalCard()) {
+                            for (FunctionalCard functionalCard : CardCache.basicFunctionalCard) {
                                 entries.add(functionalCard.getItem());
                             }
 
                             // add all basic wild card
-                            for (WildCard wildCard : CardCache.getAllBasicWildCard()) {
+                            for (WildCard wildCard : CardCache.basicWildCard) {
                                 entries.add(wildCard.getItem());
                             }
                         }

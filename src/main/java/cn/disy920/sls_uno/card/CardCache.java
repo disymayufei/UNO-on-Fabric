@@ -2,29 +2,59 @@ package cn.disy920.sls_uno.card;
 
 import cn.disy920.sls_uno.card.enums.CardType;
 import cn.disy920.sls_uno.card.enums.Color;
+import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import static cn.disy920.sls_uno.card.enums.CardType.*;
 import static cn.disy920.sls_uno.card.enums.Color.*;
 
 public final class CardCache {
-    private static NumberCard[] allNumberCard;
-    private static FunctionalCard[] basicFunctionalCard;
-
-    private static WildCard[] basicWildCard;
+    public static ImmutableList<NumberCard> numberCard;
+    public static ImmutableList<FunctionalCard> basicFunctionalCard;
+    public static ImmutableList<WildCard> basicWildCard;
+    public static ImmutableList<UNOCard> gameCards;
+    public static final WildCard WILD = new WildCard(CardType.WILD, Registry.register(
+            Registries.ITEM,
+            new Identifier("sls_uno", "card_wild"),
+            new Item(new FabricItemSettings())
+    ));
+    public static final WildCard WILD_DRAW_4 = new WildCard(CardType.WILD_DRAW_4, Registry.register(
+            Registries.ITEM,
+            new Identifier("sls_uno", "card_wild_draw_4"),
+            new Item(new FabricItemSettings())
+    ));
 
     public static void init() {
         initNumberCard();
         initBasicFunctionalCard();
-        initBasicWildCard();
+        initGameCard();
+    }
+
+    private static void initGameCard() {
+        var result = new ArrayList<UNOCard>();
+        computeCard(result, numberCard);
+        computeCard(result, basicFunctionalCard);
+        computeCard(result, basicWildCard);
+        gameCards = ImmutableList.copyOf(result);
+    }
+
+    private static <T extends UNOCard> void computeCard(Collection<UNOCard> mutableC, Collection<T> from) {
+        for (T t : from) {
+            for (int i = 0; i < t.getCardNum(); i++) {
+                mutableC.add(t);
+            }
+        }
     }
 
     private static void initNumberCard() {
-        allNumberCard = new NumberCard[40];
+        var array = new NumberCard[40];
         final Color[] colors = {RED, YELLOW, BLUE, GREEN};
 
         for (int i = 0; i < 4; i++) {
@@ -35,13 +65,14 @@ public final class CardCache {
                         new Item(new FabricItemSettings())
                 );
 
-                allNumberCard[i * 10 + j] = new NumberCard(colors[i], j, cardItem);
+                array[i * 10 + j] = new NumberCard(colors[i], j, cardItem);
             }
         }
+        numberCard = ImmutableList.copyOf(array);
     }
 
     private static void initBasicFunctionalCard() {
-        basicFunctionalCard = new FunctionalCard[12];
+        var array = new FunctionalCard[12];
         final Color[] colors = {RED, YELLOW, BLUE, GREEN};
         final CardType[] cardTypes = {SKIP, REVERSE, DRAW_2};
 
@@ -53,92 +84,12 @@ public final class CardCache {
                         new Item(new FabricItemSettings())
                 );
 
-                basicFunctionalCard[i * 3 + j] = new FunctionalCard(colors[i], cardTypes[j], cardItem);
+                array[i * 3 + j] = new FunctionalCard(colors[i], cardTypes[j], cardItem);
             }
         }
+        basicFunctionalCard = ImmutableList.copyOf(array);
     }
 
-    private static void initBasicWildCard() {
-        basicWildCard = new WildCard[2];
-
-        basicWildCard[0] = new WildCard(WILD, Registry.register(
-                Registries.ITEM,
-                new Identifier("sls_uno", "card_wild"),
-                new Item(new FabricItemSettings())
-        ));
-
-        basicWildCard[1] = new WildCard(WILD_DRAW_4, Registry.register(
-                Registries.ITEM,
-                new Identifier("sls_uno", "card_wild_draw_4"),
-                new Item(new FabricItemSettings())
-        ));
-    }
-
-    public static NumberCard getNumberCard(Color color, int num) {
-        if (color == BLACK) {
-            return null;
-        }
-
-        return allNumberCard[getIndex(color) * 10 + num];
-    }
-
-    public static FunctionalCard getBasicFunctionalCard(Color color, CardType cardType) {
-        if (color == BLACK) {
-            return null;
-        }
-
-        int index = getIndex(cardType);
-        if (index == -1) {
-            return null;
-        }
-
-        return basicFunctionalCard[getIndex(color) * 3 + index];
-    }
-
-    public static WildCard getBasicWildCard(CardType cardType) {
-        if (cardType == WILD) {
-            return basicWildCard[0];
-        }
-        else if (cardType == WILD_DRAW_4) {
-            return basicWildCard[1];
-        }
-        else {
-            return null;
-        }
-    }
-
-    public static NumberCard[] getAllNumberCard() {
-        return allNumberCard.clone();
-    }
-
-    public static FunctionalCard[] getAllBasicFunctionalCard() {
-        return basicFunctionalCard.clone();
-    }
-
-    public static WildCard[] getAllBasicWildCard() {
-        return basicWildCard.clone();
-    }
-
-    private static int getIndex(Color color) {
-        int index = -1;
-        switch (color) {
-            case RED -> index = 0;
-            case YELLOW -> index = 1;
-            case BLUE -> index = 2;
-            case GREEN -> index = 3;
-        }
-
-        return index;
-    }
-
-    private static int getIndex(CardType cardType) {
-        int index = -1;
-        switch (cardType) {
-            case SKIP -> index = 0;
-            case REVERSE -> index = 1;
-            case DRAW_2 -> index = 2;
-        }
-
-        return index;
+    private CardCache() {
     }
 }
