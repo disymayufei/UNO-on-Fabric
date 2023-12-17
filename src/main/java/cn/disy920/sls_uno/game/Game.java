@@ -54,6 +54,10 @@ public class Game {
         // TODO
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer != null ? currentPlayer.obj : null;
+    }
+
     public void reverseOrder() {
         reversingOrder = !reversingOrder;
     }
@@ -68,13 +72,25 @@ public class Game {
         player.setGame(this);
     }
 
+    public void removePlayer(Player player) {
+        if (player.getGame() != this) {
+            return; // nop because not in this game
+        }
+        players.remove(player);
+        player.setGame(null);
+    }
+
     public void nextRound() {
         // TODO check for special case, if not, call nextCommonRound()
     }
 
     public void nextCommonRound() {
-        setupCommonRound(reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext(),
-                CurrentPlayerChangedReason.NORMAL);
+        nextCommonRound(CurrentPlayerChangedReason.NORMAL);
+    }
+
+    public void nextCommonRound(CurrentPlayerChangedReason reason) {
+        var next = reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
+        setupCommonRound(next, reason);
     }
 
     private void setupCommonRound(Circle.Entry<Player> entry, CurrentPlayerChangedReason reason) {
@@ -97,7 +113,7 @@ public class Game {
 
     private void cleanup() {
         currentPlayer = null;
-//        players.clear(); // maybe will be played again?
+//        players.forEach(this::removePlayer); // maybe will be played again?
         reversingOrder = false;
     }
 }
