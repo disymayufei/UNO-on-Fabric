@@ -16,7 +16,7 @@ public class GameEventHandlerImpl implements GameEventHandler {
     }
 
     @Override
-    public void playerConsumeCard(ServerPlayerEntity who, UNOCard card) {
+    public void playerConsumeCard(Player who, UNOCard card) {
         // TODO implement card check here
     }
 
