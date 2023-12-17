@@ -14,14 +14,14 @@ public class Game {
     final Deque<UNOCard> availableCards;
     final Circle<Player> players;
     Circle.Entry<Player> currentPlayer;
-    final GameEventHandler eventHandler;
+    public final GameEventHandler eventHandler;
 
     public Game(ServerPlayerEntity roomOwner) {
         availableCards = new ArrayDeque<>();
         players = new Circle<>();
         players.add(Player.wrap(roomOwner));
         currentPlayer = players.getOrigin();
-        eventHandler = null; // TODO put impl here
+        eventHandler = new GameEventHandlerImpl(this);
     }
 
     public void start() {
