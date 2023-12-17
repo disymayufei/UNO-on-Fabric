@@ -12,15 +12,15 @@ public class Game {
     private boolean running;
     boolean reversingOrder;
     final Deque<UNOCard> availableCards;
-    final Circle<ServerPlayerEntity> players;
-    Circle.Entry<ServerPlayerEntity> currentPlayer;
+    final Circle<Player> players;
+    Circle.Entry<Player> currentPlayer;
     final GameEventHandler eventHandler;
 
     public Game(ServerPlayerEntity roomOwner) {
         availableCards = new ArrayDeque<>();
         players = new Circle<>();
-        players.add(roomOwner);
-        currentPlayer = players.getEntryOf(roomOwner);
+        players.add(Player.wrap(roomOwner));
+        currentPlayer = players.getOrigin();
         eventHandler = null; // TODO put impl here
     }
 
@@ -36,7 +36,8 @@ public class Game {
             pop = availableCards.pop();
             availableCards.addLast(pop);
         } while (pop.getType().isWild());
-        for (ServerPlayerEntity player : players) {
+        for (Player wrapper : players) {
+            var player = wrapper.getNMSPlayer();
             var inv = player.getInventory();
             for (int i = 0; i < 7; i++) {
                 var card = availableCards.pop();
@@ -57,6 +58,16 @@ public class Game {
         reversingOrder = !reversingOrder;
     }
 
+    public void addPlayer(ServerPlayerEntity player) {
+        addPlayer(Player.wrap(player));
+    }
+
+    public void addPlayer(Player player) {
+        Preconditions.checkState(player.isOnline(), "Provided player is not online");
+        players.add(player);
+        player.setGame(this);
+    }
+
     public void nextRound() {
         // TODO check for special case, if not, call nextCommonRound()
     }
@@ -66,9 +77,18 @@ public class Game {
                 CurrentPlayerChangedReason.NORMAL);
     }
 
-    private void setupCommonRound(Circle.Entry<ServerPlayerEntity> entry, CurrentPlayerChangedReason reason) {
+    private void setupCommonRound(Circle.Entry<Player> entry, CurrentPlayerChangedReason reason) {
+        if (!entry.obj.isOnline()) {
+            var next = reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
+            if (entry.obj.decreaseWaitingRound() <= 0) {
+                entry.obj.resetWaitingRounds();
+                entry.disconnect();
+            }
+            setupCommonRound(next, CurrentPlayerChangedReason.PLAYER_NOT_ONLINE);
+            return;
+        }
         this.currentPlayer = entry;
-        eventHandler.currentPlayerChanged(entry.obj, reason);
+        eventHandler.currentPlayerChanged(entry.obj.getNMSPlayer(), reason);
     }
 
     private void ensureDataClean() {
