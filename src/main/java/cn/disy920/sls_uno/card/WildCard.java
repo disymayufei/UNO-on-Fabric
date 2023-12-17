@@ -1,20 +1,20 @@
 package cn.disy920.sls_uno.card;
 
+import cn.disy920.sls_uno.AbstractUNOCard;
 import cn.disy920.sls_uno.card.enums.CardType;
 import cn.disy920.sls_uno.card.enums.Color;
 import cn.disy920.sls_uno.exception.ColorHasSetException;
-import net.minecraft.item.Item;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.util.Identifier;
 
-public class WildCard implements UNOCard {
-
+public class WildCard extends AbstractUNOCard implements UNOCard {
     private final CardType cardType;
-    private final Item item;
 
     private Color cardColor = null;
 
-    public WildCard(CardType cardType, Item item) {
+    public WildCard(CardType cardType, Identifier identifier) {
+        super(identifier, new FabricItemSettings());
         this.cardType = cardType;
-        this.item = item;
     }
 
     /**
@@ -38,11 +38,6 @@ public class WildCard implements UNOCard {
         }
 
         cardColor = color;
-    }
-
-    @Override
-    public Item getItem() {
-        return item;
     }
 
     @Override

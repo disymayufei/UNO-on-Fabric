@@ -1,24 +1,19 @@
 package cn.disy920.sls_uno.card;
 
+import cn.disy920.sls_uno.AbstractUNOCard;
 import cn.disy920.sls_uno.card.enums.CardType;
 import cn.disy920.sls_uno.card.enums.Color;
-import net.minecraft.item.Item;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.util.Identifier;
 
-public class FunctionalCard implements ColorfulCard {
-
+public class FunctionalCard extends AbstractUNOCard implements ColorfulCard {
     private final CardType cardType;
     private final Color color;
-    private final Item item;
 
-    public FunctionalCard(Color color, CardType cardType, Item item) {
+    public FunctionalCard(Color color, CardType cardType, Identifier identifier) {
+        super(identifier, new FabricItemSettings());
         this.color = color;
         this.cardType = cardType;
-        this.item = item;
-    }
-
-    @Override
-    public Item getItem() {
-        return item;
     }
 
     @Override
