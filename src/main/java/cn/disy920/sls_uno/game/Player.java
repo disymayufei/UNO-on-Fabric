@@ -14,6 +14,7 @@ public final class Player {
     private static final Map<UUID, Player> cache = new HashMap<>();
     private final UUID uuid;
     private final MinecraftServer serverHandle;
+    private final CardInventory cardInventory;
     private Game game;
     private WeakReference<ServerPlayerEntity> nmsRef;
     private int waitingRounds = MAX_WAITING_ROUNDS;
@@ -22,6 +23,7 @@ public final class Player {
         this.uuid = serverPlayer.getUuid();
         this.nmsRef = new WeakReference<>(serverPlayer);
         this.serverHandle = serverPlayer.getServer();
+        this.cardInventory = new CardInventory(this);
     }
 
     public ServerPlayerEntity getNMSPlayer() {
@@ -80,6 +82,11 @@ public final class Player {
 
     public Game getGame() {
         return game;
+    }
+
+    // all card operations must use the CardInventory instead of PlayerInventory.
+    public CardInventory getCardInventory() {
+        return cardInventory;
     }
 
     public static Player wrap(ServerPlayerEntity player) {

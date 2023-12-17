@@ -36,14 +36,13 @@ public class Game {
             pop = availableCards.pop();
             availableCards.addLast(pop);
         } while (pop.getType().isWild());
-        for (Player wrapper : players) {
-            var player = wrapper.getNMSPlayer();
-            var inv = player.getInventory();
+        for (Player player : players) {
+            var inv = player.getCardInventory();
             for (int i = 0; i < 7; i++) {
                 var card = availableCards.pop();
-                var stack = card.getItem().getDefaultStack();
-                inv.insertStack(stack);
+                inv.addCard(card);
             }
+            inv.syncToPlayerInventory();
         }
         // TODO open screen?
     }
