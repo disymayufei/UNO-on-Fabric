@@ -11,23 +11,14 @@ import java.util.*;
 public class Game {
     private boolean running;
     boolean reversingOrder;
-    final Deque<UNOCard> usedCards;
     final Deque<UNOCard> availableCards;
     final Circle<ServerPlayerEntity> players;
     Circle.Entry<ServerPlayerEntity> currentPlayer;
     final GameEventHandler eventHandler;
 
     public Game(ServerPlayerEntity roomOwner) {
-        usedCards = new ArrayDeque<>();
         availableCards = new ArrayDeque<>();
-        players = new Circle<>() {
-            @Override
-            protected void beforeDisconnectEntry(Entry<ServerPlayerEntity> entryBeingDisconnected) {
-                if (Objects.equals(entryBeingDisconnected.obj, currentPlayer.obj)) {
-                    // TODO handle player quit
-                }
-            }
-        };
+        players = new Circle<>();
         players.add(roomOwner);
         currentPlayer = players.getEntryOf(roomOwner);
         eventHandler = null; // TODO put impl here
@@ -43,7 +34,7 @@ public class Game {
         UNOCard pop;
         do {
             pop = availableCards.pop();
-            usedCards.push(pop);
+            availableCards.addLast(pop);
         } while (pop.getType().isWild());
         for (ServerPlayerEntity player : players) {
             var inv = player.getInventory();
@@ -81,7 +72,6 @@ public class Game {
     }
 
     private void ensureDataClean() {
-        usedCards.clear();
         availableCards.clear();
     }
 
