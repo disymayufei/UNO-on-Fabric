@@ -29,9 +29,17 @@ public final class Player {
         return getOrRefresh();
     }
 
+    public MinecraftServer getServer() {
+        return serverHandle;
+    }
+
     public boolean isOnline() {
         var handle = getOrRefresh();
         return handle != null;
+    }
+
+    void markOffline() {
+        nmsRef = null;
     }
 
     private ServerPlayerEntity getOrRefresh() {

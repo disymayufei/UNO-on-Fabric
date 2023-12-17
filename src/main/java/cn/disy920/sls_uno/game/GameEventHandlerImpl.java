@@ -31,7 +31,10 @@ public class GameEventHandlerImpl implements GameEventHandler {
         // TODO notification here?
         var currentPlayer = game.getCurrentPlayer();
         if (who == currentPlayer) {
-            game.nextCommonRound(CurrentPlayerChangedReason.PLAYER_LEFT);
+            who.getServer().execute(() -> {
+                game.nextCommonRound(CurrentPlayerChangedReason.PLAYER_LEFT);
+            });
         }
+        who.markOffline();
     }
 }
