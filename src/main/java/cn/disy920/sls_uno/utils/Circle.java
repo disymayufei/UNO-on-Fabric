@@ -35,7 +35,7 @@ public class Circle<T> extends AbstractCollection<T> {
         /*
          * Disconnect this entry from the circle.
          */
-        void disconnect() {
+        public void disconnect() {
             if (disconnected) {
                 return;
             }
@@ -44,6 +44,8 @@ public class Circle<T> extends AbstractCollection<T> {
             var next = this.next;
             this.prev.next = next;
             next.prev = prev;
+            this.prev = null;
+            this.next = null;
             disconnected = true;
             parent.size--;
         }
@@ -165,6 +167,10 @@ public class Circle<T> extends AbstractCollection<T> {
             result = result.next;
         } while (result != origin);
         return null;
+    }
+
+    public Entry<T> getOrigin() {
+        return origin;
     }
 
     /*

@@ -11,26 +11,17 @@ import java.util.*;
 public class Game {
     private boolean running;
     boolean reversingOrder;
-    final Deque<UNOCard> usedCards;
     final Deque<UNOCard> availableCards;
-    final Circle<ServerPlayerEntity> players;
-    Circle.Entry<ServerPlayerEntity> currentPlayer;
-    final GameEventHandler eventHandler;
+    final Circle<Player> players;
+    Circle.Entry<Player> currentPlayer;
+    public final GameEventHandler eventHandler;
 
     public Game(ServerPlayerEntity roomOwner) {
-        usedCards = new ArrayDeque<>();
         availableCards = new ArrayDeque<>();
-        players = new Circle<>() {
-            @Override
-            protected void beforeDisconnectEntry(Entry<ServerPlayerEntity> entryBeingDisconnected) {
-                if (Objects.equals(entryBeingDisconnected.obj, currentPlayer.obj)) {
-                    // TODO handle player quit
-                }
-            }
-        };
-        players.add(roomOwner);
-        currentPlayer = players.getEntryOf(roomOwner);
-        eventHandler = null; // TODO put impl here
+        players = new Circle<>();
+        players.add(Player.wrap(roomOwner));
+        currentPlayer = players.getOrigin();
+        eventHandler = new GameEventHandlerImpl(this);
     }
 
     public void start() {
@@ -43,15 +34,15 @@ public class Game {
         UNOCard pop;
         do {
             pop = availableCards.pop();
-            usedCards.push(pop);
+            availableCards.addLast(pop);
         } while (pop.getType().isWild());
-        for (ServerPlayerEntity player : players) {
-            var inv = player.getInventory();
+        for (Player player : players) {
+            var inv = player.getCardInventory();
             for (int i = 0; i < 7; i++) {
                 var card = availableCards.pop();
-                var stack = card.getItem().getDefaultStack();
-                inv.insertStack(stack);
+                inv.addCard(card);
             }
+            inv.syncToPlayerInventory();
         }
         // TODO open screen?
     }
@@ -62,8 +53,30 @@ public class Game {
         // TODO
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer != null ? currentPlayer.obj : null;
+    }
+
     public void reverseOrder() {
         reversingOrder = !reversingOrder;
+    }
+
+    public void addPlayer(ServerPlayerEntity player) {
+        addPlayer(Player.wrap(player));
+    }
+
+    public void addPlayer(Player player) {
+        Preconditions.checkState(player.isOnline(), "Provided player is not online");
+        players.add(player);
+        player.setGame(this);
+    }
+
+    public void removePlayer(Player player) {
+        if (player.getGame() != this) {
+            return; // nop because not in this game
+        }
+        players.remove(player);
+        player.setGame(null);
     }
 
     public void nextRound() {
@@ -71,23 +84,35 @@ public class Game {
     }
 
     public void nextCommonRound() {
-        setupCommonRound(reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext(),
-                CurrentPlayerChangedReason.NORMAL);
+        nextCommonRound(CurrentPlayerChangedReason.NORMAL);
     }
 
-    private void setupCommonRound(Circle.Entry<ServerPlayerEntity> entry, CurrentPlayerChangedReason reason) {
+    public void nextCommonRound(CurrentPlayerChangedReason reason) {
+        var next = reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
+        setupCommonRound(next, reason);
+    }
+
+    private void setupCommonRound(Circle.Entry<Player> entry, CurrentPlayerChangedReason reason) {
+        if (!entry.obj.isOnline()) {
+            var next = reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
+            if (entry.obj.decreaseWaitingRound() <= 0) {
+                entry.obj.resetWaitingRounds();
+                entry.disconnect();
+            }
+            setupCommonRound(next, CurrentPlayerChangedReason.PLAYER_NOT_ONLINE);
+            return;
+        }
         this.currentPlayer = entry;
-        eventHandler.currentPlayerChanged(entry.obj, reason);
+        eventHandler.currentPlayerChanged(entry.obj.getNMSPlayer(), reason);
     }
 
     private void ensureDataClean() {
-        usedCards.clear();
         availableCards.clear();
     }
 
     private void cleanup() {
         currentPlayer = null;
-//        players.clear(); // maybe will be played again?
+//        players.forEach(this::removePlayer); // maybe will be played again?
         reversingOrder = false;
     }
 }

@@ -7,5 +7,9 @@ public interface GameEventHandler {
 
     void currentPlayerChanged(ServerPlayerEntity player, CurrentPlayerChangedReason reason);
 
-    void playerConsumeCard(ServerPlayerEntity who, UNOCard card);
+    void playerConsumeCard(Player who, UNOCard card);
+
+    void playerReconnected(Player who);
+
+    void playerQuit(Player who);
 }
