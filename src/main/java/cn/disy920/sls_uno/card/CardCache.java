@@ -16,12 +16,18 @@ public final class CardCache {
     public static ImmutableList<FunctionalCard> basicFunctionalCard;
     public static ImmutableList<WildCard> basicWildCard;
     public static ImmutableList<UNOCard> gameCards;
-    public static final WildCard WILD = new WildCard(CardType.WILD,
-            new Identifier("sls_uno", "card_wild")
-    );
-    public static final WildCard WILD_DRAW_4 = new WildCard(CardType.WILD_DRAW_4,
-            new Identifier("sls_uno", "card_wild_draw_4")
-    );
+    public static final WildCard WILD;
+    public static final WildCard WILD_DRAW_4;
+
+    static {
+        WILD = new WildCard(CardType.WILD,
+                new Identifier("sls_uno", "card_wild")
+        );
+        WILD_DRAW_4 = new WildCard(CardType.WILD_DRAW_4,
+                new Identifier("sls_uno", "card_wild_draw_4")
+        );
+        basicWildCard = ImmutableList.of(WILD, WILD_DRAW_4);
+    }
 
     public static void init() {
         initNumberCard();
