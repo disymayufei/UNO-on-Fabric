@@ -25,7 +25,7 @@ public class Game {
     }
 
     public void start() {
-        Preconditions.checkState(!running, "Game already running");
+        Preconditions.checkState(!isRunning(), "Game already running");
         running = true;
         ensureDataClean();
         List<UNOCard> cards = new ArrayList<>(CardCache.gameCards);
@@ -48,9 +48,13 @@ public class Game {
     }
 
     public void stop() {
-        Preconditions.checkState(running, "Game not running");
+        Preconditions.checkState(isRunning(), "Game not running");
         running = false;
         // TODO
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 
     public Player getCurrentPlayer() {
@@ -88,13 +92,13 @@ public class Game {
     }
 
     public void nextCommonRound(CurrentPlayerChangedReason reason) {
-        var next = reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
+        var next = nextPlayer();
         setupCommonRound(next, reason);
     }
 
     private void setupCommonRound(Circle.Entry<Player> entry, CurrentPlayerChangedReason reason) {
         if (!entry.obj.isOnline()) {
-            var next = reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
+            var next = nextPlayer();
             if (entry.obj.decreaseWaitingRound() <= 0) {
                 entry.obj.resetWaitingRounds();
                 entry.disconnect();
@@ -104,6 +108,11 @@ public class Game {
         }
         this.currentPlayer = entry;
         eventHandler.currentPlayerChanged(entry.obj.getNMSPlayer(), reason);
+    }
+
+    private Circle.Entry<Player> nextPlayer() {
+        Preconditions.checkState(isRunning(), "Game is not running");
+        return reversingOrder ? currentPlayer.getPrevious() : currentPlayer.getNext();
     }
 
     private void ensureDataClean() {
