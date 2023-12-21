@@ -50,7 +50,8 @@ public class Game {
     public void stop() {
         Preconditions.checkState(isRunning(), "Game not running");
         running = false;
-        // TODO
+        // TODO notification
+        cleanup();
     }
 
     public boolean isRunning() {
