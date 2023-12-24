@@ -7,7 +7,7 @@ import cn.disy920.sls_uno.exception.ColorHasSetException;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.util.Identifier;
 
-public class WildCard extends AbstractUNOCard implements UNOCard {
+public class WildCard extends AbstractUNOCard implements UNOCard, Cloneable {
     private final CardType cardType;
 
     private Color cardColor = null;
@@ -15,6 +15,12 @@ public class WildCard extends AbstractUNOCard implements UNOCard {
     public WildCard(CardType cardType, Identifier identifier) {
         super(identifier, new FabricItemSettings());
         this.cardType = cardType;
+    }
+
+    private WildCard(CardType cardType, Identifier identifier, Color color) {
+        super(identifier, new FabricItemSettings());
+        this.cardType = cardType;
+        this.cardColor = color;
     }
 
     /**
@@ -32,12 +38,14 @@ public class WildCard extends AbstractUNOCard implements UNOCard {
         return cardColor;
     }
 
-    public void setCardColor(Color color) {
+    public WildCard setCardColor(Color color) {
         if (isColorSet()) {
             throw new ColorHasSetException("This card has set color " + cardColor.name().toLowerCase());
         }
 
-        cardColor = color;
+        WildCard wildCard = this.clone();
+        wildCard.cardColor = color;
+        return wildCard;
     }
 
     @Override
@@ -53,5 +61,13 @@ public class WildCard extends AbstractUNOCard implements UNOCard {
     @Override
     public int getCardNum() {
         return 4;
+    }
+
+    @Override
+    protected WildCard clone() {
+        try {
+            return (WildCard) super.clone();
+        }
+        catch (CloneNotSupportedException ignored) {}
     }
 }
